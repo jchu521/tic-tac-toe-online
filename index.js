@@ -2,10 +2,9 @@ const express = require("express");
 const path = require("path");
 const socketIO = require("socket.io");
 
-const io = socketIO(server);
-
 const app = express();
 const server = http.createServer(app);
+const io = socketIO(server);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));

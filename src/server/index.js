@@ -7,12 +7,12 @@ const room = require("./routes/room");
 // require("./db/db");
 
 // our localhost port
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 // our server instance
 const server = http.createServer(app);
-
+app.use(express.static(path.join(__dirname, "client/build")));
 // app.use(cors());
 // app.get("/", (req, res) => res.json("HELLO"));
 

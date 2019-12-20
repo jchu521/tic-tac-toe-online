@@ -1,47 +1,26 @@
 {
-  "name": "tictactoe",
-  "version": "0.1.0",
-  "private": true,
+  "name": "tic-tac-toe-online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "@material-ui/core": "^4.8.0",
-    "@material-ui/icons": "^4.5.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.0",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.8.1",
-    "npm-run-all": "^4.1.5",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
-    "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io": "^2.3.0"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "run-p start:client start:server",
-    "start:client": "react-scripts start",
-    "start:server": "node src/server/index.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
-  "proxy": "http://localhost:5000",
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchu521/tic-tac-toe-online.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jchu521/tic-tac-toe-online/issues"
+  },
+  "homepage": "https://github.com/jchu521/tic-tac-toe-online#readme"
 }

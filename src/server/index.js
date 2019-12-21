@@ -1,21 +1,13 @@
-const express = require("express");
 const path = require("path");
-const socketIO = require("socket.io");
-
+const express = require("express");
 const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+const port = process.env.PORT || 8080;
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "../../build")));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
-
-const port = process.env.PORT || 5000;
+app.get("/", (req, res, next) => res.sendFile(__dirname + "./index.html"));
 
 // This is what the socket.io syntax is like, we will work this later
 io.on("connection", socket => {
@@ -40,7 +32,10 @@ io.on("connection", socket => {
       socket.join(data.roomName);
       socket.broadcast.to(data.roomName).emit("player1", { joined: true });
       socket.emit("player2");
+      console.log(io.nsps["/"].adapter.rooms[data.roomName]);
     } else {
+      console.log("Fail");
+
       socket.emit("err", {
         message: "Sorry, The room is full!"
       });

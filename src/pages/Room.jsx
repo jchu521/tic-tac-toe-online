@@ -37,11 +37,11 @@ function Room({ location }) {
   const [p1Message, setP1Message] = useState("");
   const [p2Message, setP2Message] = useState("");
   const [join, setJoin] = useState(false);
-  const [endPoint] = useState("localhost:5000");
+  //   const [endPoint] = useState("https://jc-tictactoe-online.herokuapp.com/5000");
   const [p1Turn, setP1Turn] = useState(true);
   const [p2Turn, setP2Turn] = useState(false);
 
-  const socket = io(endPoint);
+  const socket = io();
 
   useEffect(() => {
     if (location.state.player === "Player1") {

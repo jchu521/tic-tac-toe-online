@@ -7,8 +7,6 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, "../../build")));
 
-app.get("/", (req, res, next) => res.sendFile(__dirname + "./index.html"));
-
 // This is what the socket.io syntax is like, we will work this later
 io.on("connection", socket => {
   console.log("User connected");

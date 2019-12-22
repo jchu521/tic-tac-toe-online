@@ -30,6 +30,8 @@ const initialBoard = [
 
 var test = [];
 
+let p1Turn = true;
+let p2Turn = false;
 function Room({ location }) {
   const classes = useStyles();
   const [mark, setMark] = useState("O");
@@ -38,8 +40,8 @@ function Room({ location }) {
   const [p2Message, setP2Message] = useState("");
   const [join, setJoin] = useState(false);
   //   const [endPoint] = useState("https://jc-tictactoe-online.herokuapp.com/5000");
-  const [p1Turn, setP1Turn] = useState(true);
-  const [p2Turn, setP2Turn] = useState(false);
+  // const [p1Turn, setP1Turn] = useState(true);
+  // const [p2Turn, setP2Turn] = useState(false);
 
   const socket = io();
 
@@ -138,11 +140,11 @@ function Room({ location }) {
       const newBoard = [...board];
       // checkWinner();
       if (mark === "O") {
-        setP1Turn(false);
-        setP2Turn(true);
+        p1Turn = false;
+        p2Turn = true;
       } else {
-        setP1Turn(true);
-        setP2Turn(false);
+        p1Turn = true;
+        p2Turn = false;
       }
       newBoard[i][j] = mark;
 
@@ -196,7 +198,10 @@ function Room({ location }) {
                             ? classes.disabledRedButton
                             : classes.disabledBlueButton
                       }}
-                      onClick={handleClick(index, jIndex)}
+                      onClick={e => {
+                        e.preventDefault();
+                        handleClick(index, jIndex);
+                      }}
                       style={{
                         lineHeight: "120px",
                         width: 120,

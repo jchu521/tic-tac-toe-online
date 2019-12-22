@@ -99,13 +99,6 @@ function Room({ location }) {
         setP2Message("WIN");
       }
     } else {
-      if (data.mark === "O") {
-        setP1Turn(false);
-        setP2Turn(true);
-      } else {
-        setP1Turn(true);
-        setP2Turn(false);
-      }
       setMark(data.mark === "O" ? "X" : "O");
     }
   });
@@ -144,7 +137,13 @@ function Room({ location }) {
     if (board[i][j].length === 0) {
       const newBoard = [...board];
       // checkWinner();
-
+      if (mark === "O") {
+        setP1Turn(false);
+        setP2Turn(true);
+      } else {
+        setP1Turn(true);
+        setP2Turn(false);
+      }
       newBoard[i][j] = mark;
 
       socket.emit("playTurn", {
